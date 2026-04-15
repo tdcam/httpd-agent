@@ -5,5 +5,5 @@ if [ $? -ne 0 ]; then
   # Send event to EDA Webhook (replace <EDA_IP> and <PORT>)
   curl -H "Content-Type: application/json" -X POST \
        -d '{"service": "httpd", "status": "down", "host": "'$(hostname)'"}' \
-       http://172.31.100.91:5000/endpoint
+       http://172.31.100.91:5001/endpoint
 fi
