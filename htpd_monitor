@@ -1,0 +1,9 @@
+#!/bin/bash
+# Check if httpd is active
+systemctl is-active --quiet httpd
+if [ $? -ne 0 ]; then
+  # Send event to EDA Webhook (replace <EDA_IP> and <PORT>)
+  curl -H "Content-Type: application/json" -X POST \
+       -d '{"service": "httpd", "status": "down", "host": "'$(hostname)'"}' \
+       http://172.31.100.91:5000/endpoint
+fi
